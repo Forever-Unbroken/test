@@ -1,0 +1,32 @@
+//竖式问题：判断一个三位数乘以一个两位数的问题，若在计算的竖式中出现的数字全部属于一个给定的四位数字的集合，则将其输出 
+#include<stdio.h>
+#include<cstring>
+char s[5],buf[99];
+int main()
+{
+    int count=0;
+    scanf("%s",s);
+    for(int ab=11;ab<=99;ab++)
+    {
+    	for(int abc=111;abc<=999;abc++)
+    	{
+    		int OK=1;
+    		int i=abc*(ab%10);
+    		int j=abc*(ab/10);
+    		int result =abc*ab;
+    		sprintf(buf,"%d%d%d%d%d%d",i,j,result,ab,abc);
+    		for(int num=0;num<strlen(buf);num++)
+    		{
+    			if(strchr(s,buf[num])==NULL)
+    			OK=0;
+			}
+			if(OK)
+			{
+				printf("<%d>",++count);
+				printf("%5d\nX%4d\n-----\n%5d\n%5d\n-----\n%5d\n",abc,ab,i,j,result);
+			}
+		}
+	}
+	
+	return 0;
+} 
